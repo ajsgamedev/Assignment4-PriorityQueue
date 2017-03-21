@@ -34,10 +34,10 @@ public class PriorityQueue {
         items.ReheapDown(0, numItems - 1);
     }
 
-    public void enQueue(int newItem) // Post: newItem is in the Queue
+    public void enQueue(Patient pat) // Post: newItem is in the Queue
     {
         numItems++;
-        items.elements[numItems - 1] = (char) newItem;	// remove root element
+        items.elements[numItems - 1] = pat.GetPriNumber();	// remove root element
         items.ReheapUp(0, numItems - 1);
     }
 
@@ -49,5 +49,11 @@ public class PriorityQueue {
     public boolean isEmpty() // Post: Function value = true if the queue is empty; false otherwise
     {
         return numItems == 0;
+    }
+    
+    public String printQueue()
+    {
+        
+        return "";
     }
 }

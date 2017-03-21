@@ -11,12 +11,12 @@ package assignment4.priorityqueue;
  */
 public class Heap {
 
-    char[] elements;  // Array that holds heap elements
+    int[] elements;  // Array that holds heap elements
     private int numElements;
 
     // Constructor
     public Heap(int maxSize) {
-        elements = new char[maxSize];
+        elements = new int[maxSize];
         numElements = maxSize;
     }
 
@@ -55,10 +55,11 @@ public class Heap {
         }
     }// end of ReheapUp
 
-    public void Swap(char[] ele, int i, int j )
+    public void Swap(int[] ele, int i, int j)
     {
-        
-        
+        int temp = ele[i];
+        ele[i]=ele[j];
+        ele[j]=temp;
     }
     
 }

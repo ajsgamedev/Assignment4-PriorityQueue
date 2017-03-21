@@ -5,6 +5,8 @@
  */
 package assignment4.priorityqueue;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alan
@@ -14,8 +16,26 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    public PriorityQueue waitingQueue;
+    public Patient pat1;
+    public Patient pat2;
+    public Patient pat3;
+
     public MainFrame() {
         initComponents();
+
+        String input = JOptionPane.showInputDialog("Length of Queue: ");
+        int max = Integer.parseInt(input);
+
+        waitingQueue = new PriorityQueue(max);
+        pat1 = new Patient();
+        pat2 = new Patient(4, "Carl Johnson");
+        pat3 = new Patient(5, "John Carlson");
+
+        waitingQueue.enQueue(pat1);
+        waitingQueue.enQueue(pat2);
+        waitingQueue.enQueue(pat3);
+
     }
 
     /**

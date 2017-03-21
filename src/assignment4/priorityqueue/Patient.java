@@ -30,6 +30,10 @@ public class Patient {
         this.name = "Bob Bush";
     }
     
+    public int GetPriNumber()
+    {
+        return this.priorityNum;
+    }
     
     public String printEmployeeDetails() 
     {

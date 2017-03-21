@@ -36,6 +36,8 @@ public class MainFrame extends javax.swing.JFrame {
         waitingQueue.enQueue(pat2);
         waitingQueue.enQueue(pat3);
 
+        
+        
     }
 
     /**

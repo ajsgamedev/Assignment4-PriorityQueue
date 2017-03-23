@@ -20,22 +20,27 @@ public class MainFrame extends javax.swing.JFrame {
     public Patient pat1;
     public Patient pat2;
     public Patient pat3;
-
+    
+    String textArea = "Current Waiting List\nPriority Num:  Patient Name:\n";
+    
     public MainFrame() {
         initComponents();
 
         String input = JOptionPane.showInputDialog("Length of Queue: ");
+        
         int max = Integer.parseInt(input);
 
         waitingQueue = new PriorityQueue(max);
         pat1 = new Patient();
-        pat2 = new Patient(4, "Carl Johnson");
-        pat3 = new Patient(5, "John Carlson");
+        pat2 = new Patient(2, "Carl Johnson");
+        pat3 = new Patient(1, "John Carlson");
 
-        waitingQueue.enQueue(pat1);
         waitingQueue.enQueue(pat2);
         waitingQueue.enQueue(pat3);
-
+        waitingQueue.enQueue(pat1);
+        
+        waitingListArea.append(textArea);
+        waitingListArea.append(waitingQueue.printQueue());
         
         
     }
@@ -67,6 +72,11 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2.setText("Priority (1-5):");
 
         addPButton.setText("Add Patient To Queue");
+        addPButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPButtonActionPerformed(evt);
+            }
+        });
 
         callPButton.setText("Call Next Patient");
         callPButton.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +84,8 @@ public class MainFrame extends javax.swing.JFrame {
                 callPButtonActionPerformed(evt);
             }
         });
+
+        callingField.setEditable(false);
 
         waitingListArea.setColumns(20);
         waitingListArea.setRows(5);
@@ -97,14 +109,14 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(callPButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(callPButton, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                             .addComponent(pNameField)
                             .addComponent(priorityField, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addComponent(callingField)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -140,7 +152,27 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void callPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_callPButtonActionPerformed
         // TODO add your handling code here:
+        waitingQueue.deQueue();
+        callingField.setText("Calling ");
+        waitingListArea.setText("");
+        waitingListArea.append(textArea);
+        waitingListArea.append(waitingQueue.printQueue());
     }//GEN-LAST:event_callPButtonActionPerformed
+
+    private void addPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPButtonActionPerformed
+        // TODO add your handling code here:
+        String name=pNameField.getText();
+        int priNum= Integer.parseInt(priorityField.getText());
+        
+        waitingQueue.enQueue(new Patient(priNum, name));
+        waitingListArea.setText("");
+        waitingListArea.append(textArea);
+        waitingListArea.append(waitingQueue.printQueue());
+        pNameField.setText("");
+        priorityField.setText("");
+        
+        
+    }//GEN-LAST:event_addPButtonActionPerformed
 
     /**
      * @param args the command line arguments

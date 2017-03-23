@@ -11,12 +11,12 @@ package assignment4.priorityqueue;
  */
 public class Heap {
 
-    int[] elements;  // Array that holds heap elements
+    Patient[] elements;  // Array that holds heap elements
     private int numElements;
 
     // Constructor
     public Heap(int maxSize) {
-        elements = new int[maxSize];
+        elements = new Patient[maxSize];
         numElements = maxSize;
     }
 
@@ -30,12 +30,12 @@ public class Heap {
             if (leftChild == bottom) {
                 maxChild = leftChild;
             } else {
-                if (elements[leftChild] <= elements[rightChild]) {
+                if (elements[leftChild].getPriNumber() <= elements[rightChild].getPriNumber()) {
                     maxChild = rightChild;
                 } else {
                     maxChild = leftChild;
                 }
-                if (elements[root] < elements[maxChild]) {
+                if (elements[root].getPriNumber() < elements[maxChild].getPriNumber()) {
                     Swap(elements, root, maxChild);
                     ReheapDown(maxChild, bottom);
                 }
@@ -48,18 +48,17 @@ public class Heap {
         int parent;
         if (bottom > root) {
             parent = (bottom - 1) / 2;
-            if (elements[parent] < elements[bottom]) {
+            if (elements[parent].getPriNumber() < elements[bottom].getPriNumber()) {
                 Swap(elements, parent, bottom);
                 ReheapUp(root, parent);
             }
         }
     }// end of ReheapUp
 
-    public void Swap(int[] ele, int i, int j)
-    {
-        int temp = ele[i];
-        ele[i]=ele[j];
-        ele[j]=temp;
+    public void Swap(Patient[] ele, int i, int j) {
+        Patient temp = ele[i];
+        ele[i] = ele[j];
+        ele[j] = temp;
     }
-    
+
 }

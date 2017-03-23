@@ -34,7 +34,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="callPButton" max="32767" attributes="0"/>
+                          <Component id="callPButton" pref="262" max="32767" attributes="0"/>
                           <Component id="pNameField" max="32767" attributes="0"/>
                           <Component id="priorityField" alignment="1" max="32767" attributes="0"/>
                       </Group>
@@ -43,7 +43,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jTextField4" min="-2" pref="156" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="212" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -101,6 +101,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Patient To Queue"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addPButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="callPButton">
       <Properties>
@@ -115,6 +118,9 @@
     <Component class="javax.swing.JTextField" name="priorityField">
     </Component>
     <Component class="javax.swing.JTextField" name="callingField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>

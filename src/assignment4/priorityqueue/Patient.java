@@ -20,18 +20,20 @@ public class Patient {
     private int priorityNum;
     private String name;
     private Timestamp timeStamp; 
+    private long time;
     
-    public Patient(int priNum, String name)
+    public Patient(int priNum, String name, long now)
     {
         this.priorityNum = priNum;
         this.name = name;
+        this.time = now;
     }
     
     public Patient() 
     {
-        this.priorityNum = 3;
+        /*this.priorityNum = 3;
         this.name = "Bob Bush";
-        //this.timeStamp.setTime(timeStamp.getTime());
+        this.time = timeStamp.getTime();*/
     }
      
     public String getPatName()
@@ -44,9 +46,9 @@ public class Patient {
         return this.priorityNum;
     }
     
-    public Timestamp getTimeStamp()
+    public long getTime()
     {
-        return this.timeStamp;
+        return this.time;
     }
             
     

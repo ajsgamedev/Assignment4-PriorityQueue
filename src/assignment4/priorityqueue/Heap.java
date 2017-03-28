@@ -30,11 +30,25 @@ public class Heap {
             if (leftChild == bottom) {
                 maxChild = leftChild;
             } else {
-                if (elements[leftChild].getPriNumber() <= elements[rightChild].getPriNumber()) {
+
+                if (elements[leftChild].getPriNumber() < elements[rightChild].getPriNumber()) {
                     maxChild = rightChild;
+                }
+                else if(elements[leftChild].getPriNumber() == elements[rightChild].getPriNumber() || elements[rightChild].getPriNumber() == elements[leftChild].getPriNumber())
+                {
+                    if(elements[leftChild].getTime() < elements[rightChild].getTime())
+                    {
+                        maxChild = rightChild;
+                    }
+                    else
+                    {
+                        maxChild = leftChild;
+                    }
+                    
                 } else {
                     maxChild = leftChild;
                 }
+
                 if (elements[root].getPriNumber() < elements[maxChild].getPriNumber()) {
                     Swap(elements, root, maxChild);
                     ReheapDown(maxChild, bottom);

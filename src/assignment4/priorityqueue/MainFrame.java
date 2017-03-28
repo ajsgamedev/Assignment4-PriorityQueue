@@ -5,6 +5,7 @@
  */
 package assignment4.priorityqueue;
 
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,29 +21,32 @@ public class MainFrame extends javax.swing.JFrame {
     public Patient pat1;
     public Patient pat2;
     public Patient pat3;
-    
+
     String textArea = "Current Waiting List\nPriority Num:  Patient Name:\n";
-    
+    Timestamp currentTimestamp;
+    private long time;
     public MainFrame() {
         initComponents();
 
+       
+        time = System.currentTimeMillis();
+        System.out.println(time);
         String input = JOptionPane.showInputDialog("Length of Queue: ");
-        
+
         int max = Integer.parseInt(input);
 
         waitingQueue = new PriorityQueue(max);
-        pat1 = new Patient();
-        pat2 = new Patient(2, "Carl Johnson");
-        pat3 = new Patient(1, "John Carlson");
+        pat1 = new Patient(3, "Bob Bush", time);
+        pat2 = new Patient(2, "Carl Johnson", time);
+        pat3 = new Patient(1, "John Carlson", time);
 
-        waitingQueue.enQueue(pat2);
+        /*waitingQueue.enQueue(pat2);
         waitingQueue.enQueue(pat3);
-        waitingQueue.enQueue(pat1);
-        
+        waitingQueue.enQueue(pat1);*/
+
         waitingListArea.append(textArea);
         waitingListArea.append(waitingQueue.printQueue());
-        
-        
+
     }
 
     /**
@@ -161,17 +165,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void addPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPButtonActionPerformed
         // TODO add your handling code here:
-        String name=pNameField.getText();
-        int priNum= Integer.parseInt(priorityField.getText());
-        
-        waitingQueue.enQueue(new Patient(priNum, name));
+        String name = pNameField.getText();
+        int priNum = Integer.parseInt(priorityField.getText());
+        long timeNow = System.currentTimeMillis();
+
+        waitingQueue.enQueue(new Patient(priNum, name, timeNow));
         waitingListArea.setText("");
         waitingListArea.append(textArea);
         waitingListArea.append(waitingQueue.printQueue());
         pNameField.setText("");
         priorityField.setText("");
-        
-        
+
+
     }//GEN-LAST:event_addPButtonActionPerformed
 
     /**

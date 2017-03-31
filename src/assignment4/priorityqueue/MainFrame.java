@@ -175,7 +175,7 @@ public class MainFrame extends javax.swing.JFrame {
         waitingListArea.append(waitingQueue.printQueue());
         pNameField.setText("");
         priorityField.setText("");
-
+        System.out.println(timeNow);
 
     }//GEN-LAST:event_addPButtonActionPerformed
 

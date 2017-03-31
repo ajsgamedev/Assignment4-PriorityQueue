@@ -31,31 +31,51 @@ public class Heap {
                 maxChild = leftChild;
             } else {
 
-                if (elements[leftChild].getPriNumber() < elements[rightChild].getPriNumber()) {
-                    maxChild = rightChild;
-                }
-                else if(elements[leftChild].getPriNumber() == elements[rightChild].getPriNumber() || elements[rightChild].getPriNumber() == elements[leftChild].getPriNumber())
-                {
+                if (elements[leftChild].getPriNumber() == elements[rightChild].getPriNumber()) {
+                    
+                    System.out.println("Pri == same");
                     if(elements[leftChild].getTime() < elements[rightChild].getTime())
                     {
                         maxChild = rightChild;
+                        System.out.println("Left less time");
                     }
                     else
                     {
                         maxChild = leftChild;
+                        System.out.println("Right less time");
                     }
+                }
+                else if(elements[leftChild].getPriNumber() < elements[rightChild].getPriNumber())
+                {
+                    
+                    maxChild = rightChild;
                     
                 } else {
+                    
                     maxChild = leftChild;
                 }
 
-                if (elements[root].getPriNumber() < elements[maxChild].getPriNumber()) {
+                if (elements[root].getPriNumber() == elements[maxChild].getPriNumber()) {
+                    if(elements[root].getTime() < elements[maxChild].getTime())
+                    {
+                        Swap(elements, root, maxChild);
+                        System.out.println("ReheapDown");
+                    }
+                    else
+                    {
+                        //ReheapDown(maxChild, bottom);
+                        //Swap(elements, root, maxChild);
+                        System.out.println("SWAP!!!");
+                    }
+                                                            
+                }
+                else if(elements[root].getPriNumber() < elements[maxChild].getPriNumber())
+                {
                     Swap(elements, root, maxChild);
                     ReheapDown(maxChild, bottom);
                 }
             }
-        }// 
-
+        }
     }
 
     public void ReheapUp(int root, int bottom) {

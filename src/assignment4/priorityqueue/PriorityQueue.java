@@ -25,13 +25,14 @@ public class PriorityQueue {
         numItems = 0;
     }
 
-    public void deQueue() // Post: element with highest priority has been removed
+    public String deQueue() // Post: element with highest priority has been removed
     // from the queue; a copy is returned from the method in item
     {
-        // pat = items.elements[0];	// remove root element
+        Patient pat = items.elements[0];	// remove root element
         items.elements[0] = items.elements[numItems - 1];
         numItems--;
         items.ReheapDown(0, numItems - 1);
+        return pat.getPatName();
     }
 
     public void enQueue(Patient pat) // Post: newItem is in the Queue

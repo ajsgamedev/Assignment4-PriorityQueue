@@ -26,51 +26,35 @@ public class Heap {
         int leftChild;
         leftChild = root * 2 + 1;
         rightChild = root * 2 + 2;
+
         if (leftChild <= bottom) {
             if (leftChild == bottom) {
                 maxChild = leftChild;
             } else {
 
-                if (elements[leftChild].getPriNumber() == elements[rightChild].getPriNumber()) {
-                    
-                    System.out.println("Pri == same");
-                    if(elements[leftChild].getTime() < elements[rightChild].getTime())
-                    {
-                        maxChild = rightChild;
-                        System.out.println("Left less time");
-                    }
-                    else
-                    {
-                        maxChild = leftChild;
-                        System.out.println("Right less time");
-                    }
-                }
-                else if(elements[leftChild].getPriNumber() < elements[rightChild].getPriNumber())
-                {
-                    
+                if (elements[leftChild].getPriNumber() < elements[rightChild].getPriNumber()) {
+
                     maxChild = rightChild;
-                    
-                } else {
-                    
+
+                } else if (elements[leftChild].getPriNumber() > elements[rightChild].getPriNumber()) {
+
                     maxChild = leftChild;
+                } else {
+                    if (elements[leftChild].getTime() > elements[rightChild].getTime()) {
+                        maxChild = rightChild;
+                    } else {
+                        maxChild = leftChild;
+                    }
                 }
 
                 if (elements[root].getPriNumber() == elements[maxChild].getPriNumber()) {
-                    if(elements[root].getTime() < elements[maxChild].getTime())
-                    {
+                    if (elements[root].getTime() > elements[maxChild].getTime()) {
+
                         Swap(elements, root, maxChild);
-                        System.out.println("ReheapDown");
+                        ReheapDown(maxChild, bottom);
                     }
-                    else
-                    {
-                        //ReheapDown(maxChild, bottom);
-                        //Swap(elements, root, maxChild);
-                        System.out.println("SWAP!!!");
-                    }
-                                                            
-                }
-                else if(elements[root].getPriNumber() < elements[maxChild].getPriNumber())
-                {
+
+                } else if (elements[root].getPriNumber() < elements[maxChild].getPriNumber()) {
                     Swap(elements, root, maxChild);
                     ReheapDown(maxChild, bottom);
                 }
@@ -94,5 +78,4 @@ public class Heap {
         ele[i] = ele[j];
         ele[j] = temp;
     }
-
 }

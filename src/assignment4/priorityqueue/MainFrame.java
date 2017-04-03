@@ -25,10 +25,10 @@ public class MainFrame extends javax.swing.JFrame {
     String textArea = "Current Waiting List\nPriority Num:  Patient Name:\n";
     Timestamp currentTimestamp;
     private long time;
+
     public MainFrame() {
         initComponents();
 
-       
         time = System.currentTimeMillis();
         System.out.println(time);
         String input = JOptionPane.showInputDialog("Length of Queue: ");
@@ -43,7 +43,6 @@ public class MainFrame extends javax.swing.JFrame {
         /*waitingQueue.enQueue(pat2);
         waitingQueue.enQueue(pat3);
         waitingQueue.enQueue(pat1);*/
-
         waitingListArea.append(textArea);
         waitingListArea.append(waitingQueue.printQueue());
 
@@ -156,25 +155,39 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void callPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_callPButtonActionPerformed
         // TODO add your handling code here:
-        waitingQueue.deQueue();
-        callingField.setText("Calling ");
-        waitingListArea.setText("");
-        waitingListArea.append(textArea);
-        waitingListArea.append(waitingQueue.printQueue());
+        if (waitingQueue.isEmpty()) 
+        {
+            callingField.setText("Queue is empty!!");
+        } else {
+
+            String name = waitingQueue.deQueue();
+            callingField.setText("Calling " + name);
+            waitingListArea.setText("");
+            waitingListArea.append(textArea);
+            waitingListArea.append(waitingQueue.printQueue());
+        }
     }//GEN-LAST:event_callPButtonActionPerformed
 
     private void addPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPButtonActionPerformed
         // TODO add your handling code here:
+        int priNum;
         String name = pNameField.getText();
-        int priNum = Integer.parseInt(priorityField.getText());
+        if(priorityField.getText().equals(""))
+        {
+            priNum=1;
+        }
+        else
+        {
+            priNum = Integer.parseInt(priorityField.getText());
+        }
         long timeNow = System.currentTimeMillis();
-
+        
         waitingQueue.enQueue(new Patient(priNum, name, timeNow));
         waitingListArea.setText("");
         waitingListArea.append(textArea);
         waitingListArea.append(waitingQueue.printQueue());
-        pNameField.setText("");
-        priorityField.setText("");
+        pNameField.setText(null);
+        priorityField.setText(null);
         System.out.println(timeNow);
 
     }//GEN-LAST:event_addPButtonActionPerformed
